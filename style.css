@@ -1,0 +1,30 @@
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+}
+
+.tb {
+    text-align: center;
+    height: 30vh;
+    width: 150%;
+}
+
+.post {
+    width: 100%;
+}
+
+.row {
+    margin: 12px;
+}
+
+.comment {
+    background: rgba(204, 235, 229, 0.918);
+}
+
+.colc {
+    border: 1px solid rgba(204, 235, 229, 0.918);
+    background: white;
+    margin: 15px;
+    padding: 12px;
+}

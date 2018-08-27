@@ -1,0 +1,62 @@
+{
+  "posts": [
+    {
+      "id": 34,
+      "userid": "2",
+      "categoryid": "5",
+      "title": "gth",
+      "body": "gjf"
+    },
+    {
+      "id": 55,
+      "userid": "3",
+      "categoryid": "2",
+      "title": "8",
+      "body": "erwet"
+    },
+    {
+      "userid": "6",
+      "categoryid": "89",
+      "title": "trty",
+      "body": "tyyt",
+      "id": 56
+    }
+  ],
+  "comments": [
+    {
+      "comment": "ytytyr",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "fayza",
+      "email": "fayza@gmail.com"
+    },
+    {
+      "name": "mzhda",
+      "email": "mzhda--95@gmail.com",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "zaynab",
+      "email": "zaynab@gmail.com"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Engineeering"
+    },
+    {
+      "id": 2,
+      "name": "football"
+    },
+    {
+      "name": "software",
+      "id": 3
+    }
+  ]
+}
