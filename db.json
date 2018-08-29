@@ -1,28 +1,77 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "lorem",
-      "body": "lorem ipsum",
-      "userId": 1,
-      "categoryId": 1
+      "userId": "1",
+      "categoryId": "1",
+      "title": "lo",
+      "body": "loremaasdjkas",
+      "id": 3
     },
     {
-      "userId": "5",
+      "userId": "1",
       "categoryId": "1",
-      "title": "5",
-      "body": "gfhgf",
-      "id": 2
-    }
-  ],
-  "comments": [
+      "title": "loremaasdjkas645",
+      "body": "loremaasdjkas",
+      "id": 7
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1,
-      "userId": 1
+      "userId": "1",
+      "categoryId": "1",
+      "title": "loremaasdjkasggg",
+      "body": "yuty",
+      "id": 9
+    },
+    {
+      "userId": "1",
+      "categoryId": "1",
+      "title": "loremaasdjkas",
+      "body": "uyu",
+      "id": 10
+    },
+    {
+      "userId": "1",
+      "categoryId": "1",
+      "title": "loremaasdjkas645",
+      "body": "7667",
+      "id": 11
+    },
+    {
+      "userId": "1",
+      "categoryId": "1",
+      "title": "lorem",
+      "body": "ytytyt",
+      "id": 13
+    },
+    {
+      "userId": "1",
+      "categoryId": "1",
+      "title": "loremaasdjkas6459",
+      "body": "999",
+      "id": 14
+    },
+    {
+      "userId": "1",
+      "categoryId": "1",
+      "title": "loremaasdjkas",
+      "body": "7676",
+      "id": 15
+    },
+    {
+      "userId": "1",
+      "categoryId": "1",
+      "title": "loremaasdjkas6457",
+      "body": "",
+      "id": 18
+    },
+    {
+      "userId": "1",
+      "categoryId": "1",
+      "title": "loremaasdjkas",
+      "body": "767687",
+      "id": 19
     }
   ],
+  "comments": [],
   "users": [
     {
       "id": 1,

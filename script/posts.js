@@ -29,38 +29,77 @@
                         $('<button id="update-button" class="btn btn-warning">')
                         .html("Edit")
                         .on("click", function () {
-                            // move data to form
-                            let row_el = $(this).closest("tr");
-                            var id = row_el.find(".id").text();
-                            var newUser = row_el.find(".userid").val();
-                            var newCategory = row_el.find(".categoryid").val();
-                            var newTitle = row_el.find(".title").val();
-                            var newBody = row_el.find(".body").val();
-                            console.log(newTitle);
-                            console.log(newBody);
-                            console.log(newUser);
-                            console.log(newCategory);
-                            console.log(id);
-                            console.log(newBody);
-                            // append saveBtn to the form
-                            const saveBtn = $(
-                                '<button class="btn btn-success">Save</button>'
-                            ).on("click", () => {
-                                $.ajax({
-                                    method: "PUT",
-                                    url: URL + el.id,
-                                    data: JSON.stringify({
-                                        userId: newUser,
-                                        categoryId: newCategory,
-                                        title: newTitle,
-                                        body: newBody
-                                    }),
-                                    contentType: "application/json",
-                                    success: function (result) {
-                                        console.log("success?");
-                                    }
+                            console.log("sdk");
+
+                            let inputsArray = $(".form input");
+                            inputsArray[0].value = el.userId;
+                            inputsArray[1].value = el.categoryId;
+                            inputsArray[2].value = el.title;
+                            // $("textarea").value = el.body;
+                            inputsArray[3].value = el.body;
+
+                            let saveBtn = $("<button>")
+                                .html("Save")
+                                .addClass("btn btn-success")
+                                .on("click", () => {
+                                    el.title = inputsArray[2];
+                                    el.body = inputsArray[3];
+                                    // axios.put(URL + el.id);
+                                    $.ajax({
+                                        method: "PUT",
+                                        url: URL + el.id,
+                                        data: JSON({
+                                            userId: el + userid,
+                                            categoryId: el + categoryid,
+                                            title: el + title,
+                                            body: el + body
+                                        }),
+                                        contentType: "application/json",
+                                        success: function (result) {
+                                            console.log("success?");
+                                        }
+                                    });
                                 });
-                            });
+                            console.log(el)
+                            // });
+
+                            $(".form").append(saveBtn)
+                            // move data to form
+                            // let row_el = $(this).closest("tr");
+                            // var id = row_el.find(".id").text();
+                            // var newUser = row_el.find(".userid").val();
+                            // var newCategory = row_el.find(".categoryid").val();
+                            // var newTitle = row_el.find(".title").val();
+                            // var newBody = row_el.find(".body").val();
+                            // console.log(newTitle);
+                            // console.log(newBody);
+                            // console.log(newUser);
+                            // console.log(newCategory);
+                            // console.log(id);
+                            // console.log(newBody);
+                            // // append saveBtn to the form
+
+                            // let inputsArray = $(".form input,.form textarea");
+                            // inputsArray[0].value = el.id;
+                            // const saveBtn = $(
+                            //     '<button class="btn btn-success">Save</button>'
+                            // ).on("click", () => {
+                            //     $.ajax({
+                            //         method: "PUT",
+                            //         url: URL + el.id,
+                            //         data: JSON.stringify({
+                            //             userId: newUser,
+                            //             categoryId: newCategory,
+                            //             title: newTitle,
+                            //             body: newBody
+                            //         }),
+                            //         contentType: "application/json",
+                            //         success: function (result) {
+                            //             console.log("success?");
+                            //         }
+                            //     });
+                            // });
+                            // $(".form").append(saveBtn)
                         })
                     ),
                     $("<td>").append(
@@ -105,3 +144,7 @@
 
     $(".form").submit(pForm);
 })();
+
+$("#sub-button").on("click", () => {
+    console.log("djkd");
+});
