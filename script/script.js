@@ -100,3 +100,19 @@
 //     });
 //     return o;
 // };
+
+
+
+// // DELETE
+// $('table').on('click', '#delete-button', function () {
+//     var rowEl = $(this).closest('tr');
+//     var id = rowEl.find('.id').text();
+//     console.log(rowEl.html);
+//     $.delete({
+//         url: URL + id,
+//         contentType: 'application/json',
+//         success: function (data) {
+//             console.log(data[0]);
+//         }
+//     });
+// });

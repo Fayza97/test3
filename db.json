@@ -8,55 +8,32 @@
       "categoryId": 1
     },
     {
-      "id": 2,
-      "title": "lorem",
-      "body": "lorem ipsum",
-      "userId": 2,
-      "categoryId": 2
-    },
-    {
-      "id": 4,
-      "userId": "67",
-      "categoryId": "7",
-      "title": "uyhiiiiiiiiiiiiiiiiiiiiy",
-      "body": "yuuyyuyuyu"
-    },
-    {
-      "userId": "54",
-      "categoryId": "76",
-      "title": "gf",
-      "body": "yyt",
-      "id": 5
-    },
-    {
-      "userId": "",
-      "categoryId": "",
-      "title": "",
-      "body": "",
-      "id": 6
-    },
-    {
-      "userId": "",
-      "categoryId": "",
-      "title": "",
-      "body": "",
-      "id": 7
-    },
-    {
-      "userId": "",
-      "categoryId": "",
-      "title": "",
-      "body": "",
-      "id": 8
+      "userId": "5",
+      "categoryId": "1",
+      "title": "5",
+      "body": "gfhgf",
+      "id": 2
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1,
+      "userId": 1
+    }
+  ],
   "users": [
     {
+      "id": 1,
       "name": "typicode",
-      "email": "user@example.com",
-      "id": 1
+      "email": "user@example.com"
     }
   ],
-  "categories": []
+  "categories": [
+    {
+      "id": 1,
+      "name": "Uncatagorized"
+    }
+  ]
 }
