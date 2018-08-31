@@ -1,88 +1,55 @@
 {
   "posts": [
     {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "lo",
-      "body": "loremaasdjkas",
-      "id": 3
+      "userid": "2",
+      "categoryid": "58",
+      "title": "gth",
+      "body": "gjf",
+      "id": 34
     },
     {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "loremaasdjkas645",
-      "body": "loremaasdjkas",
-      "id": 7
-    },
-    {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "loremaasdjkasggg",
-      "body": "yuty",
-      "id": 9
-    },
-    {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "loremaasdjkas",
-      "body": "uyu",
-      "id": 10
-    },
-    {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "loremaasdjkas645",
-      "body": "7667",
-      "id": 11
-    },
-    {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "lorem",
-      "body": "ytytyt",
-      "id": 13
-    },
-    {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "loremaasdjkas6459",
-      "body": "999",
-      "id": 14
-    },
-    {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "loremaasdjkas",
-      "body": "7676",
-      "id": 15
-    },
-    {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "loremaasdjkas6457",
-      "body": "",
-      "id": 18
-    },
-    {
-      "userId": "1",
-      "categoryId": "1",
-      "title": "loremaasdjkas",
-      "body": "767687",
-      "id": 19
+      "userid": "6",
+      "categoryid": "89",
+      "title": "trty",
+      "body": "tyyt",
+      "id": 56
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "comment": "ytytyr",
+      "id": 1
+    }
+  ],
   "users": [
     {
       "id": 1,
-      "name": "typicode",
-      "email": "user@example.com"
+      "name": "fayza",
+      "email": "fayza@gmail.com"
+    },
+    {
+      "name": "mzhda",
+      "email": "mzhda--95@gmail.com",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "zaynab",
+      "email": "zaynab@gmail.com"
     }
   ],
   "categories": [
     {
-      "id": 1,
-      "name": "Uncatagorized"
+      "name": "engineering",
+      "id": 4
+    },
+    {
+      "name": "civil",
+      "id": 5
+    },
+    {
+      "name": "softwaree",
+      "id": 6
     }
   ]
 }

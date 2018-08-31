@@ -1,24 +1,22 @@
 (function () {
     const url = "http://localhost:3000/posts";
     const URL = "http://localhost:3000/posts/";
-    // $.ajax({
     $.get({
         url: url,
-        // method: "GET",
         success: (result, req) => {
             const tbody = $("table tbody");
 
             result.forEach((el, i) => {
                 const tr = $("<tr>").append([
                     $("<td>")
-                    .addClass("id")
+                    .addClass("rid")
                     .html(el.id),
                     $("<td>")
                     .addClass("userid")
-                    .html(el.userId),
+                    .html(el.userid),
                     $("<td>")
                     .addClass("categoryid")
-                    .html(el.categoryId),
+                    .html(el.categoryid),
                     $("<td>")
                     .addClass("title")
                     .html(el.title),
@@ -32,74 +30,44 @@
                             console.log("sdk");
 
                             let inputsArray = $(".form input");
-                            inputsArray[0].value = el.userId;
-                            inputsArray[1].value = el.categoryId;
+                            inputsArray[0].value = el.userid;
+                            inputsArray[1].value = el.categoryid;
                             inputsArray[2].value = el.title;
-                            // $("textarea").value = el.body;
                             inputsArray[3].value = el.body;
 
                             let saveBtn = $("<button>")
                                 .html("Save")
                                 .addClass("btn btn-success")
                                 .on("click", () => {
+                                    el.userid = inputsArray[0];
+                                    el.categoryid = inputsArray[1];
                                     el.title = inputsArray[2];
                                     el.body = inputsArray[3];
-                                    // axios.put(URL + el.id);
+                                    saveBtn.remove()
                                     $.ajax({
                                         method: "PUT",
                                         url: URL + el.id,
-                                        data: JSON({
-                                            userId: el + userid,
-                                            categoryId: el + categoryid,
-                                            title: el + title,
-                                            body: el + body
+                                        data: JSON.stringify({
+                                            userid: userid.value,
+                                            categoryid: categoryid.value,
+                                            title: title.value,
+                                            body: body.value
                                         }),
                                         contentType: "application/json",
                                         success: function (result) {
-                                            console.log("success?");
+                                            console.log('ewrty')
+                                            tr.find('.userid').html(userid.value)
+                                            tr.find('.categoryid').html(categoryid.value)
+                                            tr.find('.title').html(title.value)
+                                            tr.find('.body').html(body.value)
+                                            $("input").val("")
+                                            console.log(title)
                                         }
                                     });
                                 });
                             console.log(el)
                             // });
-
                             $(".form").append(saveBtn)
-                            // move data to form
-                            // let row_el = $(this).closest("tr");
-                            // var id = row_el.find(".id").text();
-                            // var newUser = row_el.find(".userid").val();
-                            // var newCategory = row_el.find(".categoryid").val();
-                            // var newTitle = row_el.find(".title").val();
-                            // var newBody = row_el.find(".body").val();
-                            // console.log(newTitle);
-                            // console.log(newBody);
-                            // console.log(newUser);
-                            // console.log(newCategory);
-                            // console.log(id);
-                            // console.log(newBody);
-                            // // append saveBtn to the form
-
-                            // let inputsArray = $(".form input,.form textarea");
-                            // inputsArray[0].value = el.id;
-                            // const saveBtn = $(
-                            //     '<button class="btn btn-success">Save</button>'
-                            // ).on("click", () => {
-                            //     $.ajax({
-                            //         method: "PUT",
-                            //         url: URL + el.id,
-                            //         data: JSON.stringify({
-                            //             userId: newUser,
-                            //             categoryId: newCategory,
-                            //             title: newTitle,
-                            //             body: newBody
-                            //         }),
-                            //         contentType: "application/json",
-                            //         success: function (result) {
-                            //             console.log("success?");
-                            //         }
-                            //     });
-                            // });
-                            // $(".form").append(saveBtn)
                         })
                     ),
                     $("<td>").append(
@@ -128,8 +96,8 @@
             url: url,
             contentType: "application/json",
             data: JSON.stringify({
-                userId: $("#userid").val(),
-                categoryId: $("#categoryid").val(),
+                userid: $("#userid").val(),
+                categoryid: $("#categoryid").val(),
                 title: $("#title").val(),
                 body: $("#body").val()
             }),
@@ -139,12 +107,12 @@
             }
         });
 
-        e.preventDefault();
+        // e.preventDefault();
     }
-
     $(".form").submit(pForm);
-})();
+    $(".form").on('submit', '#sub-button', pForm).on('submit', e => e.preventDefault())
 
-$("#sub-button").on("click", () => {
-    console.log("djkd");
-});
+    $("#sub-button").on("click", () => {
+        console.log("djkd");
+    });
+})();

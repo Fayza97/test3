@@ -1,91 +1,93 @@
-$(function () {
-    // GET/READ
-    // $('#sub-button').on('click', );
+(function () {
+    const url = "http://localhost:3000/categories";
+    const URL = "http://localhost:3000/categories/";
+    $.get({
+        url: url,
+        success: (result, req) => {
+            const tbody = $("table tbody");
 
-    const loadData = function () {
-        $.ajax({
-            url: 'http://localhost:3000/categories',
-            contentType: 'application/json',
-            success: function (response) {
-                var tbodyEl = $('tbody');
+            result.forEach((el, i) => {
+                const tr = $("<tr>").append([
+                    $("<td>")
+                    .addClass("rid")
+                    .html(el.id),
+                    $("<td>")
+                    .addClass("name")
+                    .html(el.name),
+                    $("<td>").append(
+                        $('<button id="update-button" class="btn btn-warning">')
+                        .html("Edit")
+                        .on("click", function () {
+                            console.log("sdk");
 
-                tbodyEl.html('');
+                            let inputsArray = $(".form input");
+                            inputsArray[0].value = el.name;
 
-                response.forEach(function (el) {
-                    tbodyEl.append('\
-                        <tr>\
-                            <td class="id">' + el.id + '</td>\
-                            <td><input type="text" class="name" value="' + el.name + '"></td>\
-                            <td>\
-                            <button id="update-button" class="btn btn-warning">Edit</button>\
-                            <button id="delete-button" class="btn btn-danger">Delete</i></button>\
-                            </td>\
-                        </tr>\
-                    ');
-                });
-            }
-        });
-    };
-    // CREATE/POST
-    $('.form-inline').on('submit', function (event) {
-        event.preventDefault();
-
-        let nameInput = $('#name');
-
-        $.ajax({
-            url: 'http://localhost:3000/categories',
-            method: 'POST',
-            contentType: 'application/json',
+                            let saveBtn = $("<button>")
+                                .html("Save")
+                                .addClass("btn btn-success")
+                                .on("click", () => {
+                                    el.name = inputsArray[0];
+                                    saveBtn.remove()
+                                    $.ajax({
+                                        method: "PUT",
+                                        url: URL + el.id,
+                                        data: JSON.stringify({
+                                            name: name.value
+                                        }),
+                                        contentType: "application/json",
+                                        success: function (result) {
+                                            console.log('ewrty')
+                                            tr.find('.name').html(name.value)
+                                            $("input").val(" ")
+                                        }
+                                    });
+                                });
+                            console.log(el)
+                            // });
+                            $(".form").append(saveBtn)
+                        })
+                    ),
+                    $("<td>").append(
+                        $('<button id="delete-button" class="btn btn-danger">')
+                        .html("Delete")
+                        .on("click", () => {
+                            //delete
+                            $.ajax({
+                                method: "DELETE",
+                                url: URL + el.id,
+                                success: function (data) {
+                                    tr.remove();
+                                    console.log(data[0]);
+                                }
+                            });
+                        })
+                    )
+                ]);
+                tbody.append(tr);
+            });
+        }
+    });
+    //POST Method
+    function pForm(e) {
+        $.post({
+            url: url,
+            contentType: "application/json",
             data: JSON.stringify({
-                name: nameInput.val(),
+                name: $("#cname").val()
             }),
-            success: function (response) {
-                console.log(response);
-
-                nameInput.val('');
-                loadData();
-                // $('#sub-button').click();
+            //  processData: false,
+            success: function (data) {
+                console.log(JSON.stringify(data));
             }
         });
-    });
 
-    // UPDATE/PUT
-    $('table').on('click', '#update-button', function () {
-        var rowEl = $(this).closest('tr');
-        var id = rowEl.find('.id').text();
-        var newName = rowEl.find('.name').val();
-        console.log(newName);
+        // e.preventDefault();
+    }
+    $(".form").submit(pForm);
+    $(".form").on('submit', '#sub-button', pForm).on('submit', e => e.preventDefault())
 
-        $.ajax({
-            url: 'http://localhost:3000/categories/' + id,
-            method: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                name: newName,
-            }),
-            success: function (response) {
-                loadData();
-                // $('#sub-button').click();
-            }
-        });
+    $("#sub-button").on("click", () => {
+        console.log("djkd");
     });
-
-    // DELETE
-    $('table').on('click', '#delete-button', function () {
-        var rowEl = $(this).closest('tr');
-        var id = rowEl.find('.id').text();
-        console.log(rowEl.html);
-        $.ajax({
-            url: 'http://localhost:3000/categories/' + id,
-            method: 'DELETE',
-            contentType: 'application/json',
-            success: function (response) {
-                console.log(response[0]);
-                // $('#sub-button').click();
-                loadData();
-            }
-        });
-    });
-    // $('#sub-button').click();
-    loadData();
-})
+})();

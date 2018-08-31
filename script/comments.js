@@ -1,90 +1,93 @@
-$(function () {
-    // GET/READ
-    // $('#sub-button').on('click', );
+(function () {
+    const url = "http://localhost:3000/comments";
+    const URL = "http://localhost:3000/comments/";
+    $.get({
+        url: url,
+        success: (result, req) => {
+            const tbody = $("table tbody");
 
-    const loadData = function () {
-        $.ajax({
-            url: 'http://localhost:3000/comments',
-            contentType: 'application/json',
-            success: function (response) {
-                var tbodyEl = $('tbody');
+            result.forEach((el, i) => {
+                const tr = $("<tr>").append([
+                    $("<td>")
+                    .addClass("rid")
+                    .html(el.id),
+                    $("<td>")
+                    .addClass("comment")
+                    .html(el.comment),
+                    $("<td>").append(
+                        $('<button id="update-button" class="btn btn-warning">')
+                        .html("Edit")
+                        .on("click", function () {
+                            console.log("sdk");
 
-                tbodyEl.html('');
-
-                response.forEach(function (el) {
-                    tbodyEl.append('\
-                        <tr>\
-                            <td class="id">' + el.id + '</td>\
-                            <td><input type="text" class="comment" value="' + el.comment + '"></td>\
-                            <td>\
-                            <button id="update-button" class="btn btn-warning">Edit</button>\
-                            <button id="delete-button" class="btn btn-danager">Delete</i></button>\
-                            </td>\
-                        </tr>\
-                    ');
-                });
-            }
-        });
-    };
-    // CREATE/POST
-    $('.form-inline').on('submit', function (event) {
-        event.preventDefault();
-
-        let comment = $('#comment');
-
-        $.ajax({
-            url: 'http://localhost:3000/comments',
-            method: 'POST',
-            contentType: 'application/json',
+                            let inputsArray = $(".form input");
+                            inputsArray[0].value = el.comment;
+                            let saveBtn = $("<button>")
+                                .html("Save")
+                                .addClass("btn btn-success")
+                                .on("click", () => {
+                                    el.comment = inputsArray[0];
+                                    saveBtn.remove()
+                                    $.ajax({
+                                        method: "PUT",
+                                        url: URL + el.id,
+                                        data: JSON.stringify({
+                                            comment: comment.value
+                                        }),
+                                        contentType: "application/json",
+                                        success: function (result) {
+                                            console.log('ewrty')
+                                            tr.find('.comment').html(comment.value)
+                                            $("input").val("")
+                                            console.log(comment)
+                                        }
+                                    });
+                                });
+                            console.log(el)
+                            $(".form").append(saveBtn)
+                        })
+                    ),
+                    $("<td>").append(
+                        $('<button id="delete-button" class="btn btn-danger">')
+                        .html("Delete")
+                        .on("click", () => {
+                            //delete
+                            $.ajax({
+                                method: "DELETE",
+                                url: URL + el.id,
+                                success: function (data) {
+                                    tr.remove();
+                                    console.log(data[0]);
+                                }
+                            });
+                        })
+                    )
+                ]);
+                tbody.append(tr);
+            });
+        }
+    });
+    // };
+    //POST Method
+    function pForm(e) {
+        $.post({
+            url: url,
+            contentType: "application/json",
             data: JSON.stringify({
-                comment: comment.val(),
+                comment: $("#comment").val(),
             }),
-            success: function (response) {
-                console.log(response);
-
-                comment.val('');
-                loadData();
-                // $('#sub-button').click();
+            //  processData: false,
+            success: function (data) {
+                console.log(JSON.stringify(data));
             }
         });
-    });
 
-    // UPDATE/PUT
-    $('table').on('click', '#update-button', function () {
-        var rowEl = $(this).closest('tr');
-        var id = rowEl.find('.id').text();
-        var comment = rowEl.find('.comment').val();
+        // e.preventDefault();
+    }
+    $(".form").submit(pForm);
+    $(".form").on('submit', '#sub-button', pForm).on('submit', e => e.preventDefault())
 
-        $.ajax({
-            url: 'http://localhost:3000/comments/' + id,
-            method: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                comment: comment,
-            }),
-            success: function (response) {
-                loadData();
-                // $('#sub-button').click();
-            }
-        });
+    $("#sub-button").on("click", () => {
+        console.log("djkd");
     });
-
-    // DELETE
-    $('table').on('click', '#delete-button', function () {
-        var rowEl = $(this).closest('tr');
-        var id = rowEl.find('.id').text();
-        console.log(rowEl.html);
-        $.ajax({
-            url: 'http://localhost:3000/comments/' + id,
-            method: 'DELETE',
-            contentType: 'application/json',
-            success: function (response) {
-                console.log(response[0]);
-                // $('#sub-button').click();
-                loadData();
-            }
-        });
-    });
-    // $('#sub-button').click();
-    loadData();
-})
+})();
